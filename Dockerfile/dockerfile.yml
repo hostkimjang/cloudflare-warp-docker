@@ -1,0 +1,21 @@
+FROM ubuntu:24.04
+
+# 필수 패키지 설치 및 스크립트 실행에 필요한 설정
+RUN apt-get update && apt-get install -y \
+    iputils-ping \
+    curl \
+    wget \
+    apt-transport-https \
+    gnupg2 \
+    lsb-release \
+    python3 \
+    python3-pip \
+    git
+
+# scripts 디렉터리 복사
+COPY scripts /scripts
+
+# setup.sh에 실행권한 부여
+RUN chmod +x /scripts/setup.sh
+
+CMD ["bash", "/scripts/setup.sh"]

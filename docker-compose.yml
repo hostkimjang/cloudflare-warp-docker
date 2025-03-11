@@ -1,0 +1,14 @@
+services:
+  munpia-crawler-warp:
+    build:
+      context: .
+      dockerfile: ./Dockerfile/dockerfile.yml
+    privileged: true
+    volumes:
+      - ./warp:/etc/warp
+      - ./munpia-crawler:/Munpia_Crawling
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    restart: unless-stopped
+    command: ["bash", "/scripts/setup.sh"]
