@@ -33,22 +33,23 @@ cloudflare-warp-project
    docker-compose up -d
    ```
 
-5. **설정 스크립트 실행**: 컨테이너 내에서 설정 스크립트를 실행하여 Cloudflare Warp를 설치하고 구성합니다.
-   ```bash
-   docker exec -it <container-name> /scripts/setup.sh
+5. **cloudflare warp 연결방식은 warp+doh 로 되게 해놨습니다**
    ```
-
-## 사용법
-
-- Cloudflare Warp에 연결하려면 다음 명령어를 사용합니다.
-  ```bash
-  docker exec -it <container-name> warp-cli connect
-  ```
-
-- Warp 모드를 변경하려면 다음 명령어를 사용합니다.
-  ```bash
-  docker exec -it <container-name> warp-cli mode warp+doh
-  ```
+   자세한 정보는 
+   setup.sh
+   
+   # Warp 등록 및 연결
+   echo "Registering WARP client..."
+   warp-cli --accept-tos registration new
+   sleep 5
+   echo "Connecting to WARP..."
+   yes | warp-cli --accept-tos connect
+   sleep 5
+   echo "Setting WARP mode..."
+   warp-cli --accept-tos mode warp+doh
+   sleep 5
+   순차 실행을 확인하시거나 수정하십쇼.
+   ```
 
 ## 추가 정보
 
